@@ -1,9 +1,14 @@
+body {
+  text-transform: lowercase;
+}
+
 h1 {
   color: #878787;
   font-size: 40px;
   font-weight: 500;
   line-height: 30px;
   margin-bottom: 10px;
+  text-transform: capitalize;
 }
 
 ul {
