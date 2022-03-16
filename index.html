@@ -49,19 +49,24 @@
           </div>
           <div class="row">
             <div class="col-6">
-              <div class="weather-temperature">
-                <i class="" id="icon"></i>
-
-                <div class="float-left">
-                  <strong id="temperature"></strong>
-                  <small class="units">
-                    <a href="#" id="celsius"> ˚C </a>|
-                    <a href="#" id="fahrenheit">˚F </a>
-                  </small>
+              <div class="weather-temperature clearfix">
+                <div class="side">
+                  <i class="" id="icon"></i>
+                </div>
+                <div class="side">
+                  <div class="float-left clearfix">
+                    <strong id="temperature"></strong>
+                    <div class="side">
+                      <small class="units">
+                        <a href="#" id="celsius"> ˚C </a>|
+                        <a href="#" id="fahrenheit">˚F </a>
+                      </small>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-6">
+            <div class="side" id="size">
               <ul>
                 <li>Humidity: <span id="humidity"></span></li>
                 <li>Wind: <span id="wind"></span></li>
