@@ -27,6 +27,31 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thur", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+       <div class="col">
+        <div class="day"> ${day}</div>
+          <i class="fas fa-wind"></i>
+          <div class="forecast-temp">
+            <span class="max-temp"> 18 </span>
+            <span class="min-temp"> 12 </span>
+        </div>
+      </div>
+      
+      `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   console.log(response.data);
 
@@ -37,6 +62,8 @@ function displayTemperature(response) {
   let windSpeed = document.querySelector("#wind");
   let currentIcon = document.querySelector("#icon");
   let iconDescription = response.data.weather[0].main;
+
+  displayForecast();
 
   celsiusTemp = response.data.main.temp;
 
