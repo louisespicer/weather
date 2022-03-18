@@ -1,3 +1,5 @@
+let apiKey = "e5128a69873aca4252645b70fe70eb05";
+
 function formatDate(date) {
   let hours = date.getHours();
   if (hours < 10) {
@@ -27,7 +29,10 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
-function displayForecast() {
+
+
+function displayForecast(response) {
+  console.log(response.data.daily)
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -52,6 +57,16 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates){
+  console.log(coordinates)
+  let apiKey = "e5128a69873aca4252645b70fe70eb05";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+
+  axios.get(apiUrl).then(displayForecast);
+
+
+}
+
 function displayTemperature(response) {
   console.log(response.data);
 
@@ -63,7 +78,7 @@ function displayTemperature(response) {
   let currentIcon = document.querySelector("#icon");
   let iconDescription = response.data.weather[0].main;
 
-  displayForecast();
+
 
   celsiusTemp = response.data.main.temp;
 
@@ -88,6 +103,8 @@ function displayTemperature(response) {
   } else if (iconDescription == "Clouds") {
     currentIcon.setAttribute("class", "fas fa-cloud main col");
   }
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
