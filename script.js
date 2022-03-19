@@ -29,6 +29,15 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
+function formatDay(timestamp){
+  let date = new Date(timestamp * 1000)
+  let day = date.getDay();
+  let days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+
+  return days[day];
+  
+}
+
 
 
 function displayForecast(response) {
@@ -38,7 +47,7 @@ function displayForecast(response) {
   let forecastHTML = `<div class="row">`;
   
   forecast.forEach(function (forecastDay, index) {
-     if(index < 4){
+     if(index < 5){
         let iconElement = "";
         if(forecastDay.weather[0].main == "Thunderstorm"){
           iconElement = "fas fa-bolt-lightning"
@@ -61,7 +70,7 @@ function displayForecast(response) {
       forecastHTML +
       `
        <div class="col">
-        <div class="day"> ${forecastDay.dt}</div>
+        <div class="day"> ${formatDay(forecastDay.dt)}</div>
           <i class="${iconElement}"></i>
           <div class="forecast-temp">
             <span class="max-temp"> ${Math.round(forecastDay.temp.max)} </span>
