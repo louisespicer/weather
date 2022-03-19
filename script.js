@@ -32,25 +32,45 @@ dateElement.innerHTML = formatDate(currentTime);
 
 
 function displayForecast(response) {
-  console.log(response.data.daily)
+  let forecast = response.data.daily
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thur", "Fri", "Sat"];
-  days.forEach(function (day) {
+  
+  forecast.forEach(function (forecastDay, index) {
+     if(index < 4){
+        let iconElement = "";
+        if(forecastDay.weather[0].main == "Thunderstorm"){
+          iconElement = "fas fa-bolt-lightning"
+        } else if (forecastDay.weather[0].main == "Drizzle"){
+          iconElement = "fas fa-cloud-rain"
+        } else if (forecastDay.weather[0].main == "Rain"){
+          iconElement = "fas fa-cloud-showers-heavy"
+        } else if (forecastDay.weather[0].main == "Snow"){
+          iconElement = "fas fa-snowflake"
+        } else if (forecastDay.weather[0].main == "Atmosphere"){
+          iconElement = "fas fa-smog"
+        } else if (forecastDay.weather[0].main == "Clear"){
+          iconElement = "fas fa-sun"
+        } else if (forecastDay.weather[0].main == "Clouds"){
+          iconElement = "fas fa-cloud"
+        }
+      
+
     forecastHTML =
       forecastHTML +
       `
        <div class="col">
-        <div class="day"> ${day}</div>
-          <i class="fas fa-wind"></i>
+        <div class="day"> ${forecastDay.dt}</div>
+          <i class="${iconElement}"></i>
           <div class="forecast-temp">
-            <span class="max-temp"> 18 </span>
-            <span class="min-temp"> 12 </span>
+            <span class="max-temp"> ${Math.round(forecastDay.temp.max)} </span>
+            <span class="min-temp"> ${Math.round(forecastDay.temp.min)} </span>
         </div>
       </div>
       
       `;
+      }
   });
 
   forecastHTML = forecastHTML + `</div>`;
