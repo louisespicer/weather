@@ -71,7 +71,7 @@ function displayForecast(response) {
       `
        <div class="col">
         <div class="day"> ${formatDay(forecastDay.dt)}</div>
-          <i class="${iconElement}"></i>
+          <i class="${iconElement}" id="icon-forecast"></i>
           <div class="forecast-temp">
             <span class="max-temp"> ${Math.round(forecastDay.temp.max)} </span>
             <span class="min-temp"> ${Math.round(forecastDay.temp.min)} </span>
@@ -132,6 +132,7 @@ function displayTemperature(response) {
   } else if (iconDescription == "Clouds") {
     currentIcon.setAttribute("class", "fas fa-cloud main col");
   }
+
 
   getForecast(response.data.coord);
 }
