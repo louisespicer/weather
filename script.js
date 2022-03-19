@@ -175,3 +175,4 @@ let toCelsius = document.querySelector("#celsius");
 toCelsius.addEventListener("click", calculateCelsius);
 
 search("London");
+// 🤟🏼
